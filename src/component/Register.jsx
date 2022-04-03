@@ -33,7 +33,7 @@ export const Register = () => {
   };
   return (
     <>
-      <h1 className="head">FULLSTACK ASSESMENT </h1>
+      <h1 className="head">Register</h1>
       <Box
         component="form"
         sx={{

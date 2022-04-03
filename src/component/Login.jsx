@@ -41,7 +41,7 @@ export const Login = () => {
 
   return (
     <>
-      <h1 className="head">FULLSTACK ASSESMENT </h1>
+      <h1 className="head">Login</h1>
       <Box
         component="form"
         sx={{
