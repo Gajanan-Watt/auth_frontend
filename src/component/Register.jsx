@@ -1,34 +1,15 @@
 import { Box, Button, TextField } from "@mui/material";
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router";
-// import { Table } from "./Table";
-// import "./form.css";
+import { useState } from "react";
+import { useNavigate } from "react-router";
 
 export const Register = () => {
   const [text, setText] = useState({});
-  const [info, setInfo] = useState({});
-
-  // useEffect(() => {
-  //   getData();
-  // }, [check, del]);
-
-  // useEffect(() => {
-  //   sessionStorage.setItem("user", []);
-  // }, []);
 
   const handleChange = (e) => {
     let { name, value } = e.target;
     setText({ ...text, [name]: value });
-    // console.log(text);
   };
-
-  // const getData = () => {
-  // axios
-  //   .get("http://localhost:3456/api/issue/")
-  //   .then((res) => setInfo(res.data))
-  //   .catch((e) => console.log(e));
-  // };
 
   let navigate = useNavigate();
 
@@ -40,6 +21,7 @@ export const Register = () => {
       .post("http://localhost:3456/register", text)
       .then((res) => {
         sessionStorage.setItem("user", JSON.stringify(res.data));
+        // setData(res.data);
       })
       .catch((e) => console.log(e));
 
@@ -79,6 +61,7 @@ export const Register = () => {
         <TextField
           id="outlined-basic"
           label="Password"
+          type="password"
           variant="outlined"
           name="password"
           onChange={handleChange}

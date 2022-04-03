@@ -1,21 +1,33 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../context/authContext";
 
 export const Profile = () => {
-  const [logUser, setLogUser] = useState({});
-  var LoggedUser;
+  const { data } = useContext(AuthContext);
+  const [LoggedUser, setLoggedUser] = useState([]);
+  const [flag, setFlag] = useState(false);
 
-  LoggedUser = JSON.parse(sessionStorage.getItem("LoggedUser")).user;
+  // console.log("data", data);
+
   useEffect(() => {
-    setLogUser(LoggedUser);
-    console.log(LoggedUser);
-  }, []);
+    setLoggedUser(data);
+  }, [data]);
+  // console.log("LoggedUser", LoggedUser);
 
+  setTimeout(() => {
+    setFlag(true);
+  }, 2000);
   return (
     <>
-      <h1>Profile Summary</h1>
-      <h2>Name: {logUser.name}</h2>
-      <h2>Email: {logUser.email}</h2>
-      <h2>Phone Number: {logUser.phoneNumber}</h2>
+      {flag === false ? (
+        <h1>...Loading</h1>
+      ) : (
+        <div>
+          <h1>Profile Summary</h1>
+          <h2>Name: {LoggedUser.user.name}</h2>
+          <h2>Email: {LoggedUser.user.email}</h2>
+          <h2>Phone Number: {LoggedUser.user.phoneNumber}</h2>
+        </div>
+      )}
     </>
   );
 };
